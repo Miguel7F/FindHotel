@@ -4,7 +4,6 @@ const morgan = require('morgan')
 const db = require('./config/db');
 const routes = require('./routes')
 const config = require(__dirname + '/config/config.js').config
-
 const app = express()
 
 app.use(express.json());
@@ -35,6 +34,7 @@ app.use(cors({
 routes.forEach((route) => {
     app.use("/", route);
 });
+
 
 app.listen(config.PORT, function () {
     console.log('Servidor funcionando por el puerto ' + config.PORT)
