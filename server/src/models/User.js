@@ -1,29 +1,42 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    NIT: {
+    nit: {
         type: Number,
         unique: true,
-        require: true,
+        required: true,
     },
-    Name: {
+    firstName: {
         type: String,
-        require: true
+        required: true
     },
-    LastName: String,
-    Email: {
+    lastName: String,
+    image: String,
+    email: {
         type: String,
         unique: true,
-        require: true
+        required: true
     },
-    Password: String,
-    Age: Number | null,
-    Phone: Number | null,
-    Address: String,
-    State: Number,
-    Codigo: String,
-    //Credicards: { type: mongoose.Schema.Types.ObjectId, ref: 'CreditCard' },
-})
+    password: String,
+    age: Number,
+    gender: String,
+    phone: Number,
+    address: String,
+    rol: {
+        type: Number,
+        default: 2
+    },
+    isActive: {
+        type: Boolean,
+        default: false
+    },
+    // createdAt: Date(),
+    // updatedAt: Date.now(),
+}, {
+    timestamps: true
+});
 
-const User = mongoose.model('Users', userSchema)
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+
